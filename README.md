@@ -43,12 +43,14 @@
 
 [使用及安装文档](http://guide.yearning.io)
 
-## Support 支持Yearning
-
-如果Yearning能够帮助到你，请支持下Yearning吧，让Yearning能够持续改善并更新
-
-![](img/alipay.jpg)
-![](img/wechat.jpg)
+- install目录下有基础镜像Dockerfile（后期都是以此镜像构建）
+- Yearning服务镜像构建
+    - 前端代码构建
+        - 注意修改webpage/src/libs/util.js文件
+        ![notice](img/notice.png)
+        - `cd webpage && npm install && npm run build`
+    - 构建Docker镜像
+        - 项目目录下：`docker build -t <imageName>:<tag> .`
   
 ## About 联系方式
    
