@@ -1,8 +1,9 @@
-inception支持mysqldb库但不支持pymysql库，无奈mysqldb库不兼容py3.5。 
+由于inception支持mysqldb库但不支持pymysql库， 
 直接使用pymysql 连接inception报错如下：
 
+```
 ValueError: invalid literal for int() with base 10: 'Inception2'
-
+```
 查找pymysql源码修改connections.py文件
 ```
 找到783行
