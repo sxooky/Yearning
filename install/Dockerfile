@@ -38,4 +38,6 @@ RUN apk add --no-cache gcc python3 python3-dev musl-dev \
 RUN chmod 755 /usr/local/bin/docker_start.sh \
         && pip3 install --default-timeout=100 --no-cache-dir --upgrade pip setuptools \
         && pip3 install --no-cache-dir -r packages.txt \
+        && cp /usr/lib/python3.6/site-packages/pymysql/connections.py connections.py.bak \
+        && cp /usr/lib/python3.6/site-packages/pymysql/cursors.py cursors.py.bak \
         && \cp connections.py cursors.py /usr/lib/python3.6/site-packages/pymysql
