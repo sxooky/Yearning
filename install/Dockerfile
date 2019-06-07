@@ -22,6 +22,10 @@ ENV TIME_ZONE Asia/Shanghai
 ADD docker_start.sh /usr/local/bin/docker_start.sh
 ADD packages.txt packages.txt
 
+# pymysql连接inception需要替换文件
+ADD connections.py connections.py
+ADD cursors.py cursors.py
+
 # 安装时区包并配置时区TIME_ZONE为中国标准时间
 RUN apk add --no-cache -U tzdata \
     && ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime \
@@ -33,4 +37,5 @@ RUN apk add --no-cache gcc python3 python3-dev musl-dev \
 # 安装依赖包
 RUN chmod 755 /usr/local/bin/docker_start.sh \
         && pip3 install --default-timeout=100 --no-cache-dir --upgrade pip setuptools \
-        && pip3 install --no-cache-dir -r packages.txt
+        && pip3 install --no-cache-dir -r packages.txt \
+        && \cp connections.py cursors.py /usr/lib/python3.6/site-packages/pymysql
